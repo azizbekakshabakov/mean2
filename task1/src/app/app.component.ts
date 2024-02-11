@@ -1,10 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { Item } from "./item";
+import { ItemComponent } from "./item/item.component";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ItemComponent],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
@@ -16,7 +18,7 @@ export class AppComponent {
   allItems = [
     { description: "eat", done: true },
     { description: "sleep", done: false },
-    { description: "play", done: false },
+    { description: "play", done: true },
     { description: "laugh", done: false },
   ];
 
@@ -35,4 +37,8 @@ export class AppComponent {
       done: false
     });
   }
+
+  remove(item: Item) {
+    this.allItems.splice(this.allItems.indexOf(item), 1);
+  }  
 }
