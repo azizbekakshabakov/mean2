@@ -1,19 +1,29 @@
-<div class="main">
+<div class="container">
   <h1>My To Do List</h1>
 
-  <label for="addItemInput">What would you like to do today?</label>
+  <div>
+  <mat-form-field class="example-form-field">
+    <mat-label>Добавить задачу</mat-label>
+    <input
+      matInput
+      #newItem 
+      type="text" 
+      (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+      id="addItemInput"
+    >
+    @if (newItem.value) {
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="newItem.value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+  <button style="margin-left: 10px;" (click)="addItem(newItem.value); newItem.value = ''" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+    <mat-icon>add</mat-icon>
+  </button>
+  </div>
 
-  <input
-    #newItem
-    placeholder="add an item"
-    (keyup.enter)="addItem(newItem.value); newItem.value = ''"
-    class="lg-text-input"
-    id="addItemInput" />
-  <button class="btn-primary" (click)="addItem(newItem.value); newItem.value = ''">Add</button>
-
-  <div class="btn-wrapper">
+  <div>
     <button
-      class="btn btn-menu"
       [class.active]="filter == 'all'"
       (click)="filter = 'all'">
       All
