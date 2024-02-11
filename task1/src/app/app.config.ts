@@ -3,8 +3,8 @@ import { provideClientHydration, withHttpTransferCacheOptions } from '@angular/p
 
 export const appConfig: ApplicationConfig = {
   providers: [provideClientHydration(
-    // withHttpTransferCacheOptions({
-    //   includePostRequests: true
-    // })
+    withHttpTransferCacheOptions({
+      includePostRequests: true
+    })
   )]
 };
