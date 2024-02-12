@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, Injectable } from "@angular/core";
 import { Item } from "./item";
 import { ItemComponent } from "./item/item.component";
 import {MatIconModule} from '@angular/material/icon';
@@ -10,6 +10,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import { HttpClient } from "@angular/common/http";
+import { from, Observable } from 'rxjs';
 
 @Component({
   selector: "app-root",
@@ -17,6 +19,9 @@ import {MatListModule} from '@angular/material/list';
   imports: [CommonModule, ItemComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, MatButtonToggleModule, MatDividerModule, MatListModule],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class AppComponent {
   title = "todo";
@@ -30,13 +35,47 @@ export class AppComponent {
     { description: "laugh", done: false },
   ];
 
-  get items() {
-    if (this.filter === "all") {
-      return this.allItems;
-    }
-    return this.allItems.filter((item) =>
-      this.filter === "done" ? item.done : !item.done
-    );
+  tasks:any;
+  ngOnInit(): void {
+    this.tasks = this.items();
+  }
+
+  click() {
+    console.log(this.tasks);
+  }
+
+  constructor(private httpClient: HttpClient) {}
+
+  items() {
+    // const data = from(this.giveItems());
+
+    // data.subscribe({
+    //   next(response) { console.log(response); return response },
+    //   error(err) { console.error('Error: ' + err); },
+    //   complete() { console.log('Completed'); }
+    // });
+
+    console.log(111111111111);
+
+    let dat;
+    this.httpClient.get('http://localhost:3000/task')
+      .subscribe({
+        next(response) { console.log(response); dat = response },
+        error(err) { console.error('Error: ' + err); },
+        complete() { console.log('Completed'); }
+      });
+    return dat;
+
+    // if (this.filter === "all") {
+    //   return this.allItems;
+    // }
+    // return this.allItems.filter((item) =>
+    //   this.filter === "done" ? item.done : !item.done
+    // );
+  }
+
+  giveItems() {
+    return this.httpClient.get<Item[]>('http://localhost:3000/task');
   }
 
   addItem(description: string) {

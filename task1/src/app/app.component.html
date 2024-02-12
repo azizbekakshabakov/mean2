@@ -45,12 +45,18 @@
     <span *ngIf="items.length === 1; else elseBlock">item</span>
     <ng-template #elseBlock>items</ng-template>
   </h2>
-  
+  <button (click)="click()">ad</button>
   <ul>
-    <li *ngFor="let i of items; index as index">
+    <!-- <li *ngFor="let i of tasks; index as index; trackBy: trackByFn">
       <mat-list>
         <app-item (remove)="remove(i)" [item]="i"></app-item>    
         <mat-divider style="margin-top: 1rem;" *ngIf="index != items.length-1"></mat-divider>
+      </mat-list>
+    </li> -->
+    <li *ngFor="let i of tasks | async">
+      <mat-list>
+        <!-- <app-item (remove)="remove(i)" [item]="i"></app-item>     -->
+        <!-- <mat-divider style="margin-top: 1rem;" *ngIf="index != items.length-1"></mat-divider> -->
       </mat-list>
     </li>
   </ul>  
