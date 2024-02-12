@@ -2,46 +2,42 @@
   <h1>My To Do List</h1>
 
   <div>
-  <mat-form-field class="example-form-field">
-    <mat-label>Добавить задачу</mat-label>
-    <input
-      matInput
-      #newItem 
-      type="text" 
-      (keyup.enter)="addItem(newItem.value); newItem.value = ''"
-      id="addItemInput"
-    >
-    @if (newItem.value) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="newItem.value=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
-  </mat-form-field>
-  <button style="margin-left: 10px;" (click)="addItem(newItem.value); newItem.value = ''" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
-    <mat-icon>add</mat-icon>
-  </button>
+    <mat-form-field class="example-form-field">
+      <mat-label>Добавить задачу</mat-label>
+      <input
+        matInput
+        #newItem 
+        type="text" 
+        (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+        id="addItemInput"
+      >
+      @if (newItem.value) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="newItem.value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+    <button style="margin-left: 10px;" (click)="addItem(newItem.value); newItem.value = ''" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 
   <div>
-    <button
-      [class.active]="filter == 'all'"
-      (click)="filter = 'all'">
-      All
-    </button>
-  
-    <button
-      class="btn btn-menu"
-      [class.active]="filter == 'active'"
-      (click)="filter = 'active'">
-      To Do
-    </button>
-  
-    <button
-      class="btn btn-menu"
-      [class.active]="filter == 'done'"
-      (click)="filter = 'done'">
-      Done
-    </button>
+
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="bold" [checked]="filter == 'all'" (click)="filter = 'all'">Все</mat-button-toggle>
+      <mat-button-toggle value="italic" [checked]="filter == 'active'" (click)="filter = 'active'">Активные</mat-button-toggle>
+      <mat-button-toggle value="underline" [checked]="filter == 'done'" (click)="filter = 'done'">Сделанные</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <!-- <button mat-stroked-button *ngIf="filter != 'all'" (click)="filter = 'all'" color="primary">Все</button>
+    <button mat-flat-button *ngIf="filter == 'all'" (click)="filter = 'all'" color="primary">Все</button>
+
+    <button mat-stroked-button *ngIf="filter != 'active'" (click)="filter = 'active'" color="primary">Активные</button>
+    <button mat-flat-button *ngIf="filter == 'active'" (click)="filter = 'active'" color="primary">Активные</button>
+
+    <button mat-stroked-button *ngIf="filter != 'done'" (click)="filter = 'done'" color="primary">Сделанные</button>
+    <button mat-flat-button *ngIf="filter == 'done'" (click)="filter = 'done'" color="primary">Сделанные</button> -->
   </div>
 
   <h2>
@@ -51,8 +47,11 @@
   </h2>
   
   <ul>
-    <li *ngFor="let i of items">
-      <app-item (remove)="remove(i)" [item]="i"></app-item>
+    <li *ngFor="let i of items; index as index">
+      <mat-list>
+        <app-item (remove)="remove(i)" [item]="i"></app-item>    
+        <mat-divider style="margin-top: 1rem;" *ngIf="index != items.length-1"></mat-divider>
+      </mat-list>
     </li>
   </ul>  
 </div>

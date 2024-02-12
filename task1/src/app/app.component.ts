@@ -7,11 +7,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule, ItemComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, ItemComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, MatButtonToggleModule, MatDividerModule, MatListModule],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
