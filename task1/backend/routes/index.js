@@ -16,6 +16,11 @@ router.get("/", async (req, res) => {
   res.status(200).send({ data: tasks });
 });
 
+router.get("/:id", async (req, res) => {
+  const task = await Task.findOne({ _id: req.params.id });
+  res.status(200).send({ data: task });
+});
+
 router.put("/:id", async (req, res) => {
   const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
