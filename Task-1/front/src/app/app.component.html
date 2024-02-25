@@ -1,8 +1,5 @@
-<h1>{{ title }}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/tasks">Tasks</a>
-</nav>
-<router-outlet></router-outlet>
-<!-- <app-tasks></app-tasks> -->
-<app-messages></app-messages>
+<div class="container">
+  <h1>{{ title }}</h1>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+</div>

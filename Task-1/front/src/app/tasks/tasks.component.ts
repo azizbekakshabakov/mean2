@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChange } from '@angular/core';
 import { Task } from './task.interface';
 import { TaskService } from '../task.service';
 import { MessageService } from '../message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css'
+  styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
   tasks: Task[] = [];
+  filter: "all" | "active" | "done" = "all";
 
   constructor(private taskService: TaskService, private messageService: MessageService) {}
 
@@ -19,7 +21,13 @@ export class TasksComponent {
 
   getTasks(): void {
     this.taskService.getTasks().subscribe(tasks => {
-      this.tasks = tasks;
+      if (this.filter === "all") {
+        this.tasks = tasks;
+      } else {
+        this.tasks = tasks.filter((item) =>
+          this.filter === "done" ? item.done : !item.done
+        );
+      }
     });
   }
 
@@ -36,5 +44,12 @@ export class TasksComponent {
     this.taskService.deleteTask(task._id).subscribe(task => {
       this.getTasks();
     });
+  }
+
+  changeDone(task: Task): void {
+    task.done = !task.done;
+    console.log(task);
+    this.taskService.updateTask(task)
+      .subscribe(() => this.getTasks());
   }
 }

@@ -33,7 +33,7 @@ export class TaskDetailComponent {
   }
 
   save(): void {
-    if (this.task) {
+    if (this.task && this.task.description) {
       this.taskService.updateTask(this.task)
         .subscribe(() => this.goBack());
     }
