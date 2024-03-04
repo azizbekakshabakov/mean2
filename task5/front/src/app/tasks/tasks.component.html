@@ -20,9 +20,9 @@
     </button>
 </div>
 <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle value="bold" [checked]="filter == 'all'" (click)="filter = 'all'; getTasks()">Все</mat-button-toggle>
-    <mat-button-toggle value="italic" [checked]="filter == 'active'" (click)="filter = 'active'; getTasks()">Активные</mat-button-toggle>
-    <mat-button-toggle value="underline" [checked]="filter == 'done'" (click)="filter = 'done'; getTasks()">Завершенные</mat-button-toggle>
+    <mat-button-toggle value="bold" [checked]="filter == 'all'" (click)="filter = 'all'; switchTasks()">Все</mat-button-toggle>
+    <mat-button-toggle value="italic" [checked]="filter == 'active'" (click)="filter = 'active'; switchTasks()">Активные</mat-button-toggle>
+    <mat-button-toggle value="underline" [checked]="filter == 'done'" (click)="filter = 'done'; switchTasks()">Завершенные</mat-button-toggle>
 </mat-button-toggle-group>
 <ul>
     @for (task of tasks; track task._id; let index = $index) {

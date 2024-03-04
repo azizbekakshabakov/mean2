@@ -5,14 +5,37 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const atlasCreds = require('./atlasCreds');
 
+//WebSocket imports
+const http = require('http'); //!!!
+const socketIo = require('socket.io');
+
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 
 var app = express();
 const cors = require('cors');
 
-const mongoose = require("mongoose");
+app.set('port', 3001);
 
+// const server = http.createServer(app);
+// const wss = new WebSocket.Server({ server });
+
+// wss.on('connection', function connection(ws) {
+//   console.log('New WebSocket connection!!!');
+//   ws.on('message', function incoming(message) {
+//     console.log('Received message: %s', message);
+
+//     ws.send(message);
+//   })
+// });
+
+// const PORT = 5000;
+// server.listen(PORT, () => {
+//   console.log("MY SERVER IS RUN");
+// });
+
+const mongoose = require("mongoose");
+const { handleConnection } = require('./socket/eventHandlers');
 mongoose.connect(`mongodb+srv://adminUser:${encodeURIComponent(atlasCreds.password)}@atlascluster.zhkoeux.mongodb.net/?retryWrites=true&w=majority`);
 
 // view engine setup
@@ -61,5 +84,40 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+var server = http.createServer(app);
+const io = socketIo(server, {cors: {origin: '*'}});
+
+io.on('connection', (socket) => {
+  handleConnection(socket, io);
+});
+// io.on('connection', (socket) => {
+//   console.log('Client connected');
+
+//   socket.on('message', (message) => {
+//     console.log(`Received message: ${message}`);
+//     // Broadcast received message to all clients
+//     io.emit('message', message);
+//   });
+    
+//     // Emit data to the connected socket user(s)
+//   socket.emit('data', 'asdf');
+//   // });
+
+//   socket.on('disconnect', () => {
+//     console.log('Client disconnected');
+//   });
+
+//   socket.on('aziz', () => {
+//     // const tasks = Task.find({});
+//     // console.log(tasks);
+
+//     console.log('Client охуел');
+//     io.emit('bek', '123');
+//   });
+// });
+
+server.listen(3001);
 
 module.exports = app;

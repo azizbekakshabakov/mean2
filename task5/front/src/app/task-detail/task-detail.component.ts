@@ -19,12 +19,15 @@ export class TaskDetailComponent {
   ) {}
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get("id")!;
+    this.taskService.send('task', id);
     this.getTask();
   }
 
   getTask(): void {
-    const id = this.route.snapshot.paramMap.get("id");
-    this.taskService.getTask(id!).subscribe(task => this.task = task);
+    this.taskService.getTasks('task').subscribe((msg: any) => {
+      this.task = msg;
+    });
     console.log(this.task);
   }
 
@@ -34,8 +37,10 @@ export class TaskDetailComponent {
 
   save(): void {
     if (this.task && this.task.description) {
-      this.taskService.updateTask(this.task)
-        .subscribe(() => this.goBack());
+      this.taskService.send('update-task', JSON.stringify(this.task));
+      this.goBack();
+      // this.taskService.updateTask(this.task)
+      //   .subscribe(() => this.goBack());
     }
   }
 }

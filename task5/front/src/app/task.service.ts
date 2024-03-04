@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Task } from './tasks/task.interface';
 import { TASKS } from './mock-tasks';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +18,34 @@ export class TaskService {
 
   constructor(
     private messageService: MessageService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private socket: Socket) { }
 
-  getTasks(): Observable<Task[]> {
-    const tasks = this.http.get<Task[]>(this.tasksUrl)
-      .pipe(
-        map((response: any) => response['data']),
-        tap(_ => this.log("fetched tasks")),
-        catchError(this.handleError<Task[]>("getTasks", []))
-      );
-    return tasks;
+  getTasks(type: any) {
+    // this.socket.ioSocket.disconnect(); // Disconnect previous connections
+    // this.socket.ioSocket.io.uri = 'ws://localhost:3001/task'; // Set the new URL
+    // this.socket.ioSocket.connect();
+    // console.log('asdfasdfasdfasdfasdfasdf');
+    // const tasks = this.socket.on('message', (data) => {
+    //   console.log(data);
+    //   this.message$.next(data);
+    // })
+      // .pipe(
+      //   map((response: any) => response['data']),
+      //   tap(_ => this.log("fetched tasks")),
+      //   catchError(this.handleError<Task[]>("getTasks", []))
+      // );
+    // const tasks = this.http.get<Task[]>(this.tasksUrl)
+    //   .pipe(
+    //     map((response: any) => response['data']),
+    //     tap(_ => this.log("fetched tasks")),
+    //     catchError(this.handleError<Task[]>("getTasks", []))
+    //   );
+    return this.socket.fromEvent(type);
+  }
+
+  send(type: string, data: string) {
+    this.socket.emit(type, data);
   }
 
   getTask(id: string): Observable<Task> {

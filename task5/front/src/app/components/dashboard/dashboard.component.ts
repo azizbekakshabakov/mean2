@@ -17,6 +17,6 @@ export class DashboardComponent {
   }
 
   getTasks(): void {
-    this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
+    // this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
   }
 }

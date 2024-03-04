@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "detail/:id", component: TaskDetailComponent },
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" }
+  { path: "", redirectTo: "/tasks", pathMatch: "full" }
 ];
 
 @NgModule({

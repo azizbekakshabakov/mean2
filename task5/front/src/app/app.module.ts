@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -25,6 +27,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoggingInterceptor } from './services/log-interceptor/AuthInterceptor';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
+const config: SocketIoConfig = { url: 'ws://localhost:3001', options: {} };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +44,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    SocketIoModule.forRoot(config),
     MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatButtonToggleModule, MatDividerModule, MatListModule, MatCheckboxModule, MatGridListModule, MatToolbarModule
   ],
   providers: [
