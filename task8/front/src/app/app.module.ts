@@ -48,12 +48,12 @@ import { WeatherComponent } from './components/weather/weather.component';
     provideClientHydration(),
     // provideHttpClient(withFetch()),
     provideAnimationsAsync(),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoggingInterceptor,
-      multi: true
-    }
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: LoggingInterceptor,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

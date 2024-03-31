@@ -24,7 +24,7 @@ router.get("/:cityName", async (req, res) => {
     }
   });
 
-  axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&forecast_days=8&timezone=auto`)
+  axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,rain_sum,snowfall_sum,windspeed_10m_max&forecast_days=8&timezone=auto`)
   .then(response => {
     // console.log(response.data);
     res.status(200).send({ data: response.data });
