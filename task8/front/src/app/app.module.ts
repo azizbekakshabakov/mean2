@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoggingInterceptor } from './services/log-interceptor/AuthInterceptor';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { WeatherComponent } from './components/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MessagesComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

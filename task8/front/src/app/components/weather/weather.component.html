@@ -1,0 +1,40 @@
+<!-- Weather -->
+<h1 style="margin-top: 15vh"></h1>
+<div class="container mt-5">
+    <div class="text-end mb-2" style="margin-right: 236px;">
+        <button type="button" class="btn btn-secondary" style="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Choose city
+        </button>
+    </div>
+    <div class="d-flex flex-row justify-content-center align-items-center">
+        <div class="weather__card">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <div class="p-3">
+                    <h2><?=(int) (($response['daily']['temperature_2m_max'][0] + $response['daily']['temperature_2m_min'][0]) / 2)?>&deg;</h2>
+                </div>
+                <div class="p-3">
+                    <img src="<?=get_weather_icon_url($response['daily']['weathercode'][0])?>">
+                </div>
+                <div class="p-3">
+                    <h5><?=DateTime::createFromFormat('Y-m-d', $response['daily']['time'][0])->format('l')?></h5>
+                    <h3><?=isset($_COOKIE['city'])?$_COOKIE['city']:'Almaty'?></h3>
+                    <!-- <span class="weather__description">Mostly Cloudy</span> -->
+                </div>
+            </div>
+            <div class="weather__status d-flex flex-row justify-content-center align-items-center mt-3">
+                <div class="p-4 d-flex justify-content-center align-items-center">
+                    <img src="/static/img/svg/1-drop.svg">
+                    <span><?=$response['daily']['rain_sum'][0]?> mm</span>
+                </div>
+                <div class="p-4 d-flex justify-content-center align-items-center">
+                    <img src="/static/img/svg/1-snowflake.svg">
+                    <span><?=$response['daily']['snowfall_sum'][0]?> cm</span>
+                </div>
+                <div class="p-4 d-flex justify-content-center align-items-center">
+                    <img src="/static/img/svg/1-wind.svg">
+                    <span><?=$response['daily']['windspeed_10m_max'][0]?> km/h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

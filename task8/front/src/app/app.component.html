@@ -1,23 +1,4 @@
-<mat-toolbar color="primary">
-  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-  <label>My App</label>
-  <span class="example-spacer"></span>
-  @if (isToken()) {
-    <button (click)="logout()" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-      Выйти
-    </button>
-  } @else {
-    <a routerLink="/register" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-      Регистрация
-    </a>
-    <a routerLink="/login" mat-button class="example-icon" aria-label="Example icon-button with share icon">
-      Войти
-    </a>
-  }
-</mat-toolbar>
-<div class="container">
+<div>
   <router-outlet></router-outlet>
   <app-messages style="position: absolute; top: 90px; right: 50px; width: 500px;"></app-messages>
 </div>

@@ -5,6 +5,7 @@ import { DashboardComponent } from '../components/dashboard/dashboard.component'
 import { TaskDetailComponent } from '../task-detail/task-detail.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
+import { WeatherComponent } from '../components/weather/weather.component';
 
 const routes: Routes = [
   { path: "tasks", component: TasksComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "detail/:id", component: TaskDetailComponent },
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" }
+  { path: "weather", component: WeatherComponent },
+  { path: "", redirectTo: "/weather", pathMatch: "full" }
 ];
 
 @NgModule({
