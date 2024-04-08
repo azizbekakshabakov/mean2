@@ -45,8 +45,8 @@ const typeDefs = gql`
   type DailyWeather {
     time: [String!],
     weathercode: [String!],
-    temperature_2m_max: [String!],
-    temperature_2m_min: [String!],
+    temperature_2m_max: [Float!],
+    temperature_2m_min: [Float!],
     rain_sum: [String!],
     snowfall_sum: [String!],
     windspeed_10m_max: [String!],

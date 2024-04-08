@@ -25,6 +25,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoggingInterceptor } from './services/log-interceptor/AuthInterceptor';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { WeatherComponent } from './components/weather/weather.component';
+import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+import { InMemoryCache } from '@apollo/client/core';
 
 @NgModule({
   declarations: [
@@ -46,14 +49,18 @@ import { WeatherComponent } from './components/weather/weather.component';
   ],
   providers: [
     provideClientHydration(),
-    // provideHttpClient(withFetch()),
     provideAnimationsAsync(),
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: LoggingInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({ uri: 'http://localhost:3000/graphql' }) // Replace this with your GraphQL API endpoint
+        };
+      },
+      deps: [HttpLink]
+    },
+    Apollo,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather-service/weather.service';
 import {cities} from './cities';
+import { Apollo, QueryRef, ApolloBase, gql } from 'apollo-angular';
+// import { MyData, MyQuery, ByName } from './weather.query';
+import { Observable, Subscription, map } from 'rxjs';
+// import gql from 'graphql-tag';
+import { WatchQueryOptions } from '@apollo/client/core';
 
 @Component({
   selector: 'app-weather',
@@ -12,21 +17,50 @@ export class WeatherComponent {
   city: any = '';
   cityInfo: any;
 
+  posts: any;
+  private querySubscription!: Subscription;
+
   constructor(
-    private weatherService: WeatherService) {}
+    private weatherService: WeatherService,
+    private apollo: Apollo) {}
 
   ngOnInit(): void {
     if (this.city) {
-      this.getCity();
+      this.fetchWeather(this.city);
     }
   }
 
-  getCity(): void {
-    this.weatherService.getCity(this.city).subscribe(cityInfo => {
-      this.cityInfo = cityInfo;
-
-      console.log(cityInfo);
+  fetchWeather(name: string) {
+    this.apollo.query({
+      query: gql`
+        query GetWeather($name: String!) {
+          getWeather(name: $name) {
+            generationtime_ms
+            timezone
+            daily {
+              time
+              weathercode
+              temperature_2m_max
+              temperature_2m_min
+              rain_sum
+              snowfall_sum
+              windspeed_10m_max
+            }
+          }
+        }
+      `,
+      variables: {
+        name: name
+      }
+    }).subscribe(result => {
+      console.log(result.data);
+      const data = result.data as any;
+      this.cityInfo = data['getWeather'];
     });
+  }
+
+  getCity(): void {
+    this.fetchWeather(this.city);
   }
 
   get_weather_icon_url(weather_code: any): string {

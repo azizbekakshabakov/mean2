@@ -19,7 +19,7 @@ RUN npm run build
 
 
 # Use an official Apache runtime as a parent image
-FROM httpd:2.4
+FROM httpd
 
 # Set the working directory inside the container
 WORKDIR /usr/local/apache2/htdocs
