@@ -43,5 +43,5 @@ jobs:
     - name: Run frontend tests
       run: |
         cd front
-        npm test
+        npx protractor
       working-directory: task10  # Specify the path to the frontend directory
