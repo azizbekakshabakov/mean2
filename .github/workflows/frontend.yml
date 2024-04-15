@@ -43,5 +43,6 @@ jobs:
     - name: Run frontend tests
       run: |
         cd front
+        webdriver-manager update
         npx protractor
       working-directory: task10  # Specify the path to the frontend directory
