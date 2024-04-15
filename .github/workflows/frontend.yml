@@ -1,0 +1,47 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+
+    # Install backend dependencies and start the backend server
+    - name: Install backend dependencies and start server
+      run: |
+        cd task10/backend
+        npm install
+        npm start &
+      background: true
+
+    # Wait for the backend server to start
+    - name: Wait for backend server to start
+      run: |
+        timeout 60 sh -c 'until nc -z localhost 3000; do sleep 1; done'
+
+    # Install frontend dependencies
+    - name: Install frontend dependencies
+      run: |
+        cd frontend
+        npm install
+      working-directory: task10/frontend  # Specify the path to the frontend directory
+
+    # Run frontend tests
+    - name: Run frontend tests
+      run: |
+        cd frontend
+        npm test
+      working-directory: task10/frontend  # Specify the path to the frontend directory
