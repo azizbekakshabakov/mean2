@@ -4,10 +4,10 @@ exports.config = {
     specs: ['./tests/*.js'],
     framework: 'jasmine',
     useAllAngular2AppRoots: true,
-    capabilities: {
-        browserName: 'chrome',
-    chromeOptions: {
-        args: ['--headless', '--disable-gpu']
-    }
-      }
+    // capabilities: {
+    //     browserName: 'firefox',
+    //     'moz:firefoxOptions': {
+    //       binary: 'firefox' // Optional: Specify the path to Firefox binary
+    //     }
+    //   }
 };
