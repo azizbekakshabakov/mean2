@@ -1,4 +1,11 @@
 describe('Логин страница', function() {
+    beforeEach((done) => {
+        setTimeout(() => {
+          // Your setup logic goes here
+          done(); // Signal that setup is complete
+        }, 50000); // 5 seconds timeout for setup
+      });
+
     it('Должна возвр страниц логин', function() {
       browser.get('http://localhost:4200/login');
 
@@ -9,6 +16,13 @@ describe('Логин страница', function() {
   });
 
 describe('Login Page', function() {
+    beforeEach((done) => {
+        setTimeout(() => {
+          // Your setup logic goes here
+          done(); // Signal that setup is complete
+        }, 50000); // 5 seconds timeout for setup
+      });
+
     it('should enter email, click confirm, and check localStorage for token', async function() {
       await browser.get('http://localhost:4200/login');
   
