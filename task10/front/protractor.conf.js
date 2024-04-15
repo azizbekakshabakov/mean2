@@ -30,6 +30,9 @@ exports.config = {
     
       // Options to be passed to Jasmine
       jasmineNodeOpts: {
-        defaultTimeoutInterval: 120000
+        defaultTimeoutInterval: 60000
+      },
+      onPrepare: function() {
+        browser.waitForAngularEnabled(false);
       }
 };
