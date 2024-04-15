@@ -37,12 +37,13 @@ jobs:
       run: |
         cd front
         npm install
+        npm install -g protractor
       working-directory: task10  # Specify the path to the frontend directory
 
     # Run frontend tests
     - name: Run frontend tests
       run: |
         cd front
-        npx webdriver-manager update
-        npx protractor
+        webdriver-manager update
+        protractor
       working-directory: task10  # Specify the path to the frontend directory
