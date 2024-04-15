@@ -10,16 +10,20 @@ exports.config = {
     //       binary: 'firefox' // Optional: Specify the path to Firefox binary
     //     }
     //   }
-    capabilities: {
-        browserName: 'chrome',
-        chromeOptions: {
-          args: ['--headless', '--disable-gpu']
-        }
-      },
+
+    // capabilities: {
+    //     browserName: 'chrome',
+    //     chromeOptions: {
+    //       args: ['--headless', '--disable-gpu']
+    //     }
+    //   },
     
-      // Spec patterns are relative to the current working directory when
-      // protractor is called
-    //   specs: ['path/to/specs/*.spec.js'],
+    capabilities: {
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: ['--headless']
+        }
+    },
     
       // Framework to use
       framework: 'jasmine',
