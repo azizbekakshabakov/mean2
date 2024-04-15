@@ -1,0 +1,34 @@
+<h1>Логин</h1>
+<mat-form-field class="example-form-field">
+  <mat-label>Email</mat-label>
+  <input
+    matInput
+    [(ngModel)]="email"
+    type="text"
+    (keyup.enter)="login();"
+    id="emailInput"
+  >
+  @if (email) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</mat-form-field>
+<mat-form-field class="example-form-field">
+  <mat-label>Пароль</mat-label>
+  <input
+    matInput
+    [(ngModel)]="password"
+    type="password"
+    (keyup.enter)="login();"
+    id="passwordInput"
+  >
+  @if (password) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</mat-form-field>
+<div>
+  <button type="button" id="confirm" mat-raised-button color="primary" style="margin-left: 5px;" (click)="login()">Сохранить</button>
+</div>
