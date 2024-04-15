@@ -44,6 +44,6 @@ jobs:
     - name: Run frontend tests
       run: |
         cd front
-        webdriver-manager update
+        webdriver-manager update --versions.chrome 123
         protractor
       working-directory: task10  # Specify the path to the frontend directory

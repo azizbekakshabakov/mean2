@@ -11,19 +11,19 @@ exports.config = {
     //     }
     //   }
 
-    // capabilities: {
-    //     browserName: 'chrome',
-    //     chromeOptions: {
-    //       args: ['--headless', '--disable-gpu']
-    //     }
-    //   },
-    
     capabilities: {
-        browserName: 'firefox',
-        'moz:firefoxOptions': {
-            args: ['--headless']
+        browserName: 'chrome',
+        chromeOptions: {
+          args: ['--headless', '--disable-gpu']
         }
-    },
+      },
+    
+    // capabilities: {
+    //     browserName: 'firefox',
+    //     'moz:firefoxOptions': {
+    //         args: ['--headless']
+    //     }
+    // },
     
       // Framework to use
       framework: 'jasmine',
