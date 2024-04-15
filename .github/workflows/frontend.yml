@@ -35,13 +35,13 @@ jobs:
     # Install frontend dependencies
     - name: Install frontend dependencies
       run: |
-        cd frontend
+        cd front
         npm install
-      working-directory: task10/front  # Specify the path to the frontend directory
+      working-directory: task10  # Specify the path to the frontend directory
 
     # Run frontend tests
     - name: Run frontend tests
       run: |
-        cd frontend
+        cd front
         npm test
-      working-directory: task10/front  # Specify the path to the frontend directory
+      working-directory: task10  # Specify the path to the frontend directory
