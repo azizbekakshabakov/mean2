@@ -20,9 +20,9 @@ exports.config = {
     
     capabilities: {
         browserName: 'firefox',
-        // 'moz:firefoxOptions': {
-        //     args: ['--headless']
-        // }
+        'moz:firefoxOptions': {
+            args: ['--headless']
+        }
     },
     
       jasmineNodeOpts: {
