@@ -38,7 +38,6 @@ jobs:
         cd front
         npm install
         npm install -g protractor
-        npm install -g @angular/cli
       #
       working-directory: task10  # Specify the path to the frontend directory
 
