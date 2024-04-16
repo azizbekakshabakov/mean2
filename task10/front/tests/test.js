@@ -1,13 +1,13 @@
 describe('Логин страница', function() {
-    beforeEach((done) => {
-        setTimeout(() => {
-          // Your setup logic goes here
-          done(); // Signal that setup is complete
-        }, 50000); // 5 seconds timeout for setup
-      });
+    // beforeEach((done) => {
+    //     setTimeout(() => {
+    //       // Your setup logic goes here
+    //       done(); // Signal that setup is complete
+    //     }, 50000); // 5 seconds timeout for setup
+    //   });
 
     it('Должна возвр страниц логин', function() {
-      browser.get('http://localhost:4200/login');
+      browser.get('http://127.0.0.1:4200/login');
 
       var heading = element(by.css('h1'));
   
@@ -16,15 +16,15 @@ describe('Логин страница', function() {
   });
 
 describe('Login Page', function() {
-    beforeEach((done) => {
-        setTimeout(() => {
-          // Your setup logic goes here
-          done(); // Signal that setup is complete
-        }, 50000); // 5 seconds timeout for setup
-      });
+    // beforeEach((done) => {
+    //     setTimeout(() => {
+    //       // Your setup logic goes here
+    //       done(); // Signal that setup is complete
+    //     }, 50000); // 5 seconds timeout for setup
+    //   });
 
     it('should enter email, click confirm, and check localStorage for token', async function() {
-      await browser.get('http://localhost:4200/login');
+      await browser.get('http://127.0.0.1:4200/login');
   
       var emailInput = element(by.id('emailInput'));
       await emailInput.sendKeys('azizbek@gmail.com');
