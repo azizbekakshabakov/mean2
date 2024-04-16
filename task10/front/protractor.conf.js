@@ -3,7 +3,7 @@ exports.config = {
     baseUrl: 'http://localhost:4200/',
     specs: ['./tests/*.js'],
     framework: 'jasmine',
-    useAllAngular2AppRoots: true,
+    // useAllAngular2AppRoots: true,
     // capabilities: {
     //     browserName: 'firefox',
     //     'moz:firefoxOptions': {
@@ -20,19 +20,15 @@ exports.config = {
     
     capabilities: {
         browserName: 'firefox',
-        'moz:firefoxOptions': {
-            args: ['--headless']
-        }
+        // 'moz:firefoxOptions': {
+        //     args: ['--headless']
+        // }
     },
     
-      // Framework to use
-      framework: 'jasmine',
-    
-      // Options to be passed to Jasmine
       jasmineNodeOpts: {
         defaultTimeoutInterval: 30000
       },
-      onPrepare: function() {
-        browser.waitForAngularEnabled(false);
-      }
+    //   onPrepare: function() {
+    //     browser.waitForAngularEnabled(false);
+    //   }
 };
