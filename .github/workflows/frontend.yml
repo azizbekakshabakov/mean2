@@ -42,6 +42,12 @@ jobs:
       #
       working-directory: task10  # Specify the path to the frontend directory
 
+    - name: Serve application
+      run: npm run ng serve &
+
+    - name: Wait for server to start
+      run: sleep 60
+
     # Run frontend tests
     - name: Run frontend tests
       run: |
