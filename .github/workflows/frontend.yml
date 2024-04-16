@@ -44,7 +44,7 @@ jobs:
 
     - name: Serve application
       run: |
-        cd task10/backend
+        cd task10/front
         npx ng serve &
 
     - name: Wait for server to start
