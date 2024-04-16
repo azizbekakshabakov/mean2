@@ -39,9 +39,16 @@ jobs:
         npm install
         npm install -g @angular/cli
         npm install -g protractor
-        npx ng serve
       #
       working-directory: task10  # Specify the path to the frontend directory
+
+    - name: Serve application
+      run: |
+        cd task10/backend
+        npx ng serve &
+
+    - name: Wait for server to start
+      run: sleep 60
 
     # Run frontend tests
     - name: Run frontend tests
