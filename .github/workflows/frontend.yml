@@ -38,6 +38,7 @@ jobs:
         cd front
         npm install
         npm install -g protractor
+        npx ng serve
       working-directory: task10  # Specify the path to the frontend directory
 
     # Run frontend tests

@@ -7,7 +7,7 @@ describe('Логин страница', function() {
     //   });
 
     it('Должна возвр страниц логин', function() {
-      browser.get('http://127.0.0.1:4200/login');
+      browser.get('http://localhost:4200/login');
 
       var heading = element(by.css('h1'));
   
@@ -24,7 +24,7 @@ describe('Login Page', function() {
     //   });
 
     it('should enter email, click confirm, and check localStorage for token', async function() {
-      await browser.get('http://127.0.0.1:4200/login');
+      await browser.get('http://localhost:4200/login');
   
       var emailInput = element(by.id('emailInput'));
       await emailInput.sendKeys('azizbek@gmail.com');
