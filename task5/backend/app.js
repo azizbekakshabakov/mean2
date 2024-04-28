@@ -15,7 +15,7 @@ var authRouter = require('./routes/auth');
 var app = express();
 const cors = require('cors');
 
-app.set('port', 3001);
+app.set('port', 3000);
 
 // const server = http.createServer(app);
 // const wss = new WebSocket.Server({ server });
@@ -50,21 +50,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // ЛОГИРОВАНИЕ ГЛОБАЛЬНОЕ МИДЛВЕЙР
-app.use((req, res, next) => {
-  res.on('finish', () => {
-    console.log(`Логирование идет: ip адрес ${req.ip}, статус запроса ${res.statusCode}, тип запроса ${req.method},  ${new Date().toISOString()}`);
-  });
-  next();
-});
+// app.use((req, res, next) => {
+//   res.on('finish', () => {
+//     console.log(`Логирование идет: ip адрес ${req.ip}, статус запроса ${res.statusCode}, тип запроса ${req.method},  ${new Date().toISOString()}`);
+//   });
+//   next();
+// });
 
 // РАЗРЕШЕНИЕ ЗАПРОСОВ С LOCALHOST
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
 
-  next();
-});
+//   next();
+// });
 
 app.use('/task/', indexRouter);
 app.use('/auth/', authRouter);
@@ -118,6 +118,6 @@ io.on('connection', (socket) => {
 //   });
 // });
 
-server.listen(3001);
+server.listen(3000);
 
 module.exports = app;
