@@ -1,0 +1,45 @@
+<h1>Список задачь</h1>
+<div>
+    <mat-form-field class="example-form-field">
+        <mat-label>Добавить задачу</mat-label>
+        <input
+          matInput
+          #taskName
+          type="text" 
+          (keyup.enter)="add(taskName.value); taskName.value=''"
+          id="addItemInput"
+        >
+        @if (taskName.value) {
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="taskName.value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+    </mat-form-field>
+    <button style="margin-left: 10px;" (click)="add(taskName.value); taskName.value=''" mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="bold" [checked]="filter == 'all'" (click)="filter = 'all'; getTasks()">Все</mat-button-toggle>
+    <mat-button-toggle value="italic" [checked]="filter == 'active'" (click)="filter = 'active'; getTasks()">Активные</mat-button-toggle>
+    <mat-button-toggle value="underline" [checked]="filter == 'done'" (click)="filter = 'done'; getTasks()">Завершенные</mat-button-toggle>
+</mat-button-toggle-group>
+<ul>
+    @for (task of tasks; track task._id; let index = $index) {
+        <li>
+            <mat-list>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>
+                        <div><label (click)="changeDone(task)" [class.strikethrough]="task.done" >{{task.description}}</label></div>
+                        <div><label (click)="changeDone(task)" [class.strikethrough]="task.done" [innerHTML]="task.descriptionSanitized"></label></div>
+                    </span>
+                    <span>
+                        <a routerLink="/detail/{{task._id}}" mat-raised-button color="primary" class="anti-link">Изменить</a>
+                        <button type="button" mat-raised-button color="accent" style="margin-left: 5px;" (click)="delete(task)">Удолить</button>
+                    </span>
+                </div>
+                <mat-divider style="margin-top: 1rem;" *ngIf="index != tasks.length-1"></mat-divider>
+            </mat-list>
+        </li>
+    }
+</ul>
