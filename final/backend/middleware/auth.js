@@ -23,7 +23,7 @@ authUserMiddleware = async (req, res, next) => {
   if (!token) return res.status(400).json({ message: "нету токена" });
   try {
     const decoded = jwt.verify(token, "qwerty");
-
+    // console.log(123123123);
     req.userId = decoded.id;
     const user = await User.findOne({ _id: req.userId });
 

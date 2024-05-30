@@ -7,6 +7,7 @@ const atlasCreds = require('./atlasCreds');
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var rentRouter = require('./routes/rent');
 
 var app = express();
 const cors = require('cors');
@@ -28,6 +29,7 @@ app.use(cors());
 
 app.use('/car/', indexRouter);
 app.use('/auth/', authRouter);
+app.use('/rent/', rentRouter);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // catch 404 and forward to error handler

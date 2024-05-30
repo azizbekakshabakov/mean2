@@ -17,13 +17,14 @@ const upload = multer({ storage: storage });
 
 router.post('/', authModMiddleware, upload.single('image'), async (req, res) => {
   try {
-      const { name, description } = req.body;
+      const { name, description, tariff } = req.body;
       const image = req.file ? req.file.path : null;
 
       const newCar = new Car({
           name,
           description,
-          image
+          image,
+          tariff
       });
 
       await newCar.save();
