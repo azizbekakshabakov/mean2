@@ -21,7 +21,7 @@ jobs:
 
     - name: Install backend dependencies
       run: |
-        cd task10/backend
+        cd final/backend
         npm install
       # background: true
 
@@ -29,7 +29,7 @@ jobs:
       run: |
         cd backend
         npx mocha
-      working-directory: task10
+      working-directory: final
 
     # Wait for the backend server to start
     # - name: Wait for backend server to start

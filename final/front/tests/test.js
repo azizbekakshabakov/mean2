@@ -15,10 +15,10 @@ describe('Login Page', function() {
       await browser.get('http://localhost:4200/login');
   
       var emailInput = element(by.id('emailInput'));
-      await emailInput.sendKeys('azizbek@gmail.com');
+      await emailInput.sendKeys('sam');
   
       var passwordInput = element(by.id('passwordInput'));
-      await passwordInput.sendKeys('azizbek');
+      await passwordInput.sendKeys('sam');
   
       var confirmButton = element(by.id('confirm'));
       await confirmButton.click();

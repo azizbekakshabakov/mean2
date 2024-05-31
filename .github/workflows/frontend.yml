@@ -22,7 +22,7 @@ jobs:
     # Install backend dependencies and start the backend server
     - name: Install backend dependencies and start server
       run: |
-        cd task10/backend
+        cd final/backend
         npm install
         npm start > /dev/null 2>&1 &
       # background: true
@@ -41,7 +41,7 @@ jobs:
         npm install -g protractor
         npx ng serve &
       #
-      working-directory: task10  # Specify the path to the frontend directory
+      working-directory: final  # Specify the path to the frontend directory
 
     # Run frontend tests
     - name: Run frontend tests
@@ -49,4 +49,4 @@ jobs:
         cd front
         webdriver-manager update
         protractor
-      working-directory: task10  # Specify the path to the frontend directory
+      working-directory: final  # Specify the path to the frontend directory
