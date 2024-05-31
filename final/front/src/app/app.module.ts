@@ -26,6 +26,7 @@ import { LoggingInterceptor } from './services/log-interceptor/AuthInterceptor';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {Component} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
+import { AddAutoComponent } from './components/add-auto/add-auto.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     MessagesComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddAutoComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { DashboardComponent } from '../components/dashboard/dashboard.component'
 import { TaskDetailComponent } from '../task-detail/task-detail.component';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
+import { AddAutoComponent } from '../components/add-auto/add-auto.component';
 
 const routes: Routes = [
   { path: "tasks", component: TasksComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "detail/:id", component: TaskDetailComponent },
+  { path: "add-auto", component: AddAutoComponent },
   { path: "", redirectTo: "/dashboard", pathMatch: "full" }
 ];
 

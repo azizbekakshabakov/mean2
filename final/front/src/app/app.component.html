@@ -8,6 +8,11 @@
       Добавить авто
     </a>
   }
+  @if (isUser()) {
+    <a routerLink="/rents" mat-button style="margin-left: 1rem;" class="example-icon" aria-label="Example icon-button with share icon">
+      Мои аренды
+    </a>
+  }
   <span class="example-spacer"></span>
   @if (isToken()) {
     <button (click)="logout()" mat-button class="example-icon" aria-label="Example icon-button with share icon">

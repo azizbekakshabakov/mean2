@@ -6,19 +6,35 @@
     </div> -->
     
     <mat-form-field class="example-form-field">
-        <mat-label>Введите новое название</mat-label>
-        <input
-          matInput
-          [(ngModel)]="task.description"
-          type="text"
-          (keyup.enter)="save();"
-          id="addItemInput"
-        >
-        @if (task.description) {
-          <button matSuffix mat-icon-button aria-label="Clear" (click)="task.description=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        }
+      <mat-label>Введите новое название</mat-label>
+      <input
+        matInput
+        [(ngModel)]="task.name"
+        type="text"
+        (keyup.enter)="save();"
+        id="addItemInput"
+      >
+      @if (task.name) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="task.name=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+      
+    <mat-form-field class="example-form-field">
+      <mat-label>Введите новое описание</mat-label>
+      <input
+        matInput
+        [(ngModel)]="task.description"
+        type="text"
+        (keyup.enter)="save();"
+        id="addItemInput2"
+      >
+      @if (task.description) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="task.description=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
     </mat-form-field>
 </div>
 <div>

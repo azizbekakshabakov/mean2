@@ -3,6 +3,8 @@ import { Task } from './task.interface';
 import { TaskService } from '../task.service';
 import { MessageService } from '../message.service';
 import { Subscription } from 'rxjs';
+import { AutoService } from '../services/auto-service/auto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -10,10 +12,9 @@ import { Subscription } from 'rxjs';
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  tasks: Task[] = [];
-  filter: "all" | "active" | "done" = "all";
+  tasks: any[] = [];
 
-  constructor(private taskService: TaskService, private messageService: MessageService) {}
+  constructor(private taskService: TaskService, private autoService: AutoService, private router: Router) {}
 
   ngOnInit(): void {
     this.getTasks();
@@ -21,23 +22,8 @@ export class TasksComponent {
 
   getTasks(): void {
     this.taskService.getTasks().subscribe(tasks => {
-      if (this.filter === "all") {
-        this.tasks = tasks;
-      } else {
-        this.tasks = tasks.filter((item) =>
-          this.filter === "done" ? item.done : !item.done
-        );
-      }
+      this.tasks = tasks;
     });
-  }
-
-  add(description: string): void {
-    description = description.trim();
-    if (!description) { return; }
-    this.taskService.addTask({ description } as Task)
-      .subscribe(task => {
-        this.getTasks();
-      });
   }
 
   delete(task: Task): void {
@@ -46,10 +32,22 @@ export class TasksComponent {
     });
   }
 
-  changeDone(task: Task): void {
-    task.done = !task.done;
-    console.log(task);
-    this.taskService.updateTask(task)
-      .subscribe(() => this.getTasks());
+  rent(car: any): void {
+    this.autoService.rent(car._id).subscribe(task => {
+      this.getTasks();
+      this.router.navigate(['/tasks']);
+    });
+  }
+
+  isMod() {
+    if (localStorage.getItem("role") == "mod")
+      return true;
+    return false;
+  }
+
+  isUser() {
+    if (localStorage.getItem("role") == "user")
+      return true;
+    return false;
   }
 }

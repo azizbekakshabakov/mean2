@@ -10,7 +10,7 @@ import { TaskService } from '../task.service';
   styleUrl: './task-detail.component.css'
 })
 export class TaskDetailComponent {
-  task: Task | undefined;
+  task: any | undefined;
 
   constructor(
     private route: ActivatedRoute,

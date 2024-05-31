@@ -24,6 +24,13 @@ export class AppComponent {
     return false;
   }
 
+  isUser(): boolean {
+    if (localStorage.getItem('role') == 'user') {
+      return true;
+    }
+    return false;
+  }
+
   logout(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("role");

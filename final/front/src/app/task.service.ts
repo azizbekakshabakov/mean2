@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TaskService {
-  private tasksUrl = "http://localhost:3000/task";
+  private tasksUrl = "http://localhost:3000/car";
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
@@ -19,12 +19,12 @@ export class TaskService {
     private messageService: MessageService,
     private http: HttpClient) { }
 
-  getTasks(): Observable<Task[]> {
-    const tasks = this.http.get<Task[]>(this.tasksUrl)
+  getTasks(): Observable<any[]> {
+    const tasks = this.http.get<any[]>(this.tasksUrl)
       .pipe(
         map((response: any) => response['data']),
         tap(_ => this.log("fetched tasks")),
-        catchError(this.handleError<Task[]>("getTasks", []))
+        // catchError(this.handleError<Task[]>("getTasks", []))
       );
     return tasks;
   }
