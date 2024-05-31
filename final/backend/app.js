@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const atlasCreds = require('./atlasCreds');
 
+// everyday
+require('./scheduler');
+
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var rentRouter = require('./routes/rent');

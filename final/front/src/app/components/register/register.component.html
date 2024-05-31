@@ -1,6 +1,6 @@
 <h1>Регистрация</h1>
 <mat-form-field class="example-form-field">
-  <mat-label>Email</mat-label>
+  <mat-label>Логин</mat-label>
   <input
     matInput
     [(ngModel)]="email"
@@ -28,6 +28,13 @@
       <mat-icon>close</mat-icon>
     </button>
   }
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Роль</mat-label>
+  <mat-select [(ngModel)]="role" matNativeControl required>
+    <mat-option value="user">Клиент</mat-option>
+    <mat-option value="mod">Модератор</mat-option>
+  </mat-select>
 </mat-form-field>
 <div>
   <button type="button" mat-raised-button color="primary" style="margin-left: 5px;" (click)="register()">Сохранить</button>

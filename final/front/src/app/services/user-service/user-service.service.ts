@@ -21,8 +21,8 @@ export class UserServiceService {
     return result;
   }
 
-  register(email: string, password: string): Observable<User> {
-    const result = this.http.post<User>(`${this.tasksUrl}/register`, {email, password})
+  register(email: string, password: string, role: string): Observable<User> {
+    const result = this.http.post<User>(`${this.tasksUrl}/register`, {email, password, role})
       .pipe(
         // map((response: any) => response['token']),
       //   tap((user: User) => this.log(`added task w/ token=${user.token}`)),

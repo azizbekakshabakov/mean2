@@ -24,6 +24,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoggingInterceptor } from './services/log-interceptor/AuthInterceptor';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {Component} from '@angular/core';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatButtonToggleModule, MatDividerModule, MatListModule, MatCheckboxModule, MatGridListModule, MatToolbarModule
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatButtonToggleModule, MatDividerModule, MatListModule, MatCheckboxModule, MatGridListModule, MatToolbarModule,
+    MatSelectModule
   ],
   providers: [
     provideClientHydration(),

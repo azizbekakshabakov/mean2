@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   email?: string;
   password?: string;
+  role?: "mod" | "user";
 
   constructor(private userService: UserServiceService, private router: Router) {
   }
 
   register(): void {
-    if (this.email && this.password) {
-      this.userService.register(this.email, this.password)
+    if (this.email && this.password && this.role) {
+      this.userService.register(this.email, this.password, this.role)
         .subscribe((data: any) => {
           // localStorage.setItem("token", data);
           this.router.navigate(['/login']);
