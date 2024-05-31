@@ -59,6 +59,24 @@ router.delete("/:id", authUserMiddleware, async (req, res) => {
   return res.status(403).send({message: 'wrong user'})
 });
 
+router.get("/balance", authUserMiddleware, async (req, res) => {
+  const user = await User.findOne({_id: req.userId});
+  console.log('azizizizi', user);
+
+  res.status(200).send({ data: user['balance'] });
+});
+
+router.post('/balance', authUserMiddleware, async (req, res) => {
+  const { amount } = req.body;
+  console.log('asdfasdfadsf'+amount);
+  const user = await User.findOne({_id: req.userId});
+
+  user.balance += amount;
+  await user.save();
+
+  res.status(201).json({ message: 'The paid successfully' });
+});
+
 // router.get("/:id", async (req, res) => {
 //   const car = await Car.findOne({ _id: req.params.id });
 //   res.status(200).send({ data: car });

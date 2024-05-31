@@ -27,5 +27,3 @@ schedule.scheduleJob('0 0 * * *', () => {
 //   console.log('Running scheduled task...');
   executeCommand();
 });
-
-console.log('Scheduler is set up to run daily at 2:30 PM');

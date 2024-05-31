@@ -36,4 +36,13 @@ export class AutoService {
   deleteRent(rentId: any) {
     return this.http.delete<any>(`http://localhost:3000/rent/${rentId}`);
   }
+
+  getBalance() {
+    return this.http.get<any>(`http://localhost:3000/rent/balance`);
+  }
+
+  setBalance(amount: number) {
+    const result = this.http.post<any>(`http://localhost:3000/rent/balance`, amount);
+    return result;
+  }
 }

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class TasksComponent {
   tasks: any[] = [];
+  balance: any;
 
   constructor(private taskService: TaskService, private autoService: AutoService, private router: Router) {}
 
@@ -23,6 +24,11 @@ export class TasksComponent {
   getTasks(): void {
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks;
+    });
+
+    this.autoService.getBalance().subscribe(userBalance => {
+      this.balance = userBalance['data'];
+      // console.log(this.balance);
     });
   }
 
@@ -35,7 +41,7 @@ export class TasksComponent {
   rent(car: any): void {
     this.autoService.rent(car._id).subscribe(task => {
       this.getTasks();
-      this.router.navigate(['/tasks']);
+      this.router.navigate(['/rents']);
     });
   }
 

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RentsComponent {
   tasks: any[] = [];
+  balance: any;
 
   constructor(private taskService: AutoService, private autoService: AutoService, private router: Router) {}
 
@@ -21,18 +22,29 @@ export class RentsComponent {
       this.tasks = tasks['cars'];
       console.log(this.tasks);
     });
+
+    this.autoService.getBalance().subscribe(userBalance => {
+      this.balance = userBalance['data'];
+      // console.log(this.balance);
+    });
   }
 
   unrent(task: any): void {
-    // this.taskService.deleteTask(task._id).subscribe(task => {
-    //   this.getTasks();
-    // });
+    this.taskService.deleteRent(task._id).subscribe(task => {
+      this.getTasks();
+    });
   }
 
   rent(car: any): void {
     this.autoService.rent(car._id).subscribe(task => {
       this.getTasks();
       this.router.navigate(['/tasks']);
+    });
+  }
+
+  setBalance(amount: number): void {
+    this.autoService.setBalance(amount).subscribe(userBalance => {
+      this.getTasks();
     });
   }
 
