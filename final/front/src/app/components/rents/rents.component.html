@@ -1,6 +1,5 @@
 <h1>Мои аренды</h1>
 <div style="text-align: end; font-weight: 600;">Баланс: {{balance}}$</div>
-<button type="button" mat-raised-button color="accent" style="margin-left: 5px;" (click)="setBalance(100)">Пополнить</button>
 <ul>
     @for (task of tasks; track task._id; let index = $index) {
         <li>

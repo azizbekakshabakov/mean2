@@ -42,12 +42,6 @@ export class RentsComponent {
     });
   }
 
-  setBalance(amount: number): void {
-    this.autoService.setBalance(amount).subscribe(userBalance => {
-      this.getTasks();
-    });
-  }
-
   isMod() {
     if (localStorage.getItem("role") == "mod")
       return true;

@@ -28,6 +28,7 @@ import {Component} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { AddAutoComponent } from './components/add-auto/add-auto.component';
 import { RentsComponent } from './components/rents/rents.component';
+import { SetBalanceComponent } from './components/set-balance/set-balance.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RentsComponent } from './components/rents/rents.component';
     LoginComponent,
     RegisterComponent,
     AddAutoComponent,
-    RentsComponent
+    RentsComponent,
+    SetBalanceComponent
   ],
   imports: [
     BrowserModule,

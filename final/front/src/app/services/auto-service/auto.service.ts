@@ -41,8 +41,8 @@ export class AutoService {
     return this.http.get<any>(`http://localhost:3000/rent/balance`);
   }
 
-  setBalance(amount: number) {
-    const result = this.http.post<any>(`http://localhost:3000/rent/balance`, amount);
+  setBalance(amount: number | undefined) {
+    const result = this.http.post<any>(`http://localhost:3000/rent/balance`, {amount});
     return result;
   }
 }
