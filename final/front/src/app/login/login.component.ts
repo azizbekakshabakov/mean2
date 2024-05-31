@@ -18,7 +18,9 @@ export class LoginComponent {
     if (this.email && this.password) {
       this.userService.login(this.email, this.password)
         .subscribe((data: any) => {
-          localStorage.setItem("token", data);
+          console.log(data);
+          localStorage.setItem("token", data['token']);
+          localStorage.setItem("role", data['role']);
           this.router.navigate(['/tasks']);
         });
     }

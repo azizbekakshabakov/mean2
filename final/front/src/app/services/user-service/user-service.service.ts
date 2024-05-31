@@ -14,7 +14,7 @@ export class UserServiceService {
   login(email: string, password: string): Observable<User> {
     const result = this.http.post<User>(`${this.tasksUrl}/login`, {email, password})
       .pipe(
-        map((response: any) => response['token']),
+        map((response: any) => response/*['token']*/),
       //   tap((user: User) => this.log(`added task w/ token=${user.token}`)),
       //   catchError(this.handleError<User>('login'))
       );

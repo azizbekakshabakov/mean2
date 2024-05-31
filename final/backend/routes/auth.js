@@ -5,13 +5,6 @@ var router = express.Router();
 const {User} = require('../schemas/user');
 
 router.post("/register", async (req, res) => {
-  // const mongoClient = new MongoClient("mongodb://localhost:27017/", {
-  //   // useNewUrlParser: true,
-  //   // useUnifiedTopology: true,
-  // });
-  // const conn = await mongoClient.connect();
-  // const db = conn.db("projectdb");
-  // const collection = db.collection("users");
 
   // Check if user exists
   const isBusy = await User.findOne({ email: req.body.email });
@@ -53,6 +46,7 @@ router.post("/login", async (req, res) => {
       message: "Пользователь залогинился",
       status: "Успшно",
       token: generateToken(user._id),
+      role: user.role
     });
   } else {
     res.status(400).send("Неверные данные. Bad request");

@@ -17,8 +17,16 @@ export class AppComponent {
     return false;
   }
 
+  isMod(): boolean {
+    if (localStorage.getItem('role') == 'mod') {
+      return true;
+    }
+    return false;
+  }
+
   logout(): void {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     this.router.navigate(['/login']);
   }
 }

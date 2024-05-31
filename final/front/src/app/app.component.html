@@ -3,6 +3,11 @@
     <mat-icon>menu</mat-icon>
   </button> -->
   <label>My App</label>
+  @if (isMod()) {
+    <a routerLink="/add-auto" mat-button style="margin-left: 1rem;" class="example-icon" aria-label="Example icon-button with share icon">
+      Добавить авто
+    </a>
+  }
   <span class="example-spacer"></span>
   @if (isToken()) {
     <button (click)="logout()" mat-button class="example-icon" aria-label="Example icon-button with share icon">
