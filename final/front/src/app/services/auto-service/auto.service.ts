@@ -28,4 +28,12 @@ export class AutoService {
   rent(taskId: any) {
     return this.http.post<any>(`http://localhost:3000/rent`, {carId: taskId});
   }
+
+  rents() {
+    return this.http.get<any>(`http://localhost:3000/rent`);
+  }
+
+  deleteRent(rentId: any) {
+    return this.http.delete<any>(`http://localhost:3000/rent/${rentId}`);
+  }
 }

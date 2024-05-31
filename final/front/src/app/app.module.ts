@@ -27,6 +27,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {Component} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { AddAutoComponent } from './components/add-auto/add-auto.component';
+import { RentsComponent } from './components/rents/rents.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AddAutoComponent } from './components/add-auto/add-auto.component';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    AddAutoComponent
+    AddAutoComponent,
+    RentsComponent
   ],
   imports: [
     BrowserModule,

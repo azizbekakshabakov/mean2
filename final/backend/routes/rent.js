@@ -38,7 +38,10 @@ router.get("/", authUserMiddleware, async (req, res) => {
   const usercar = await Usercar.find({userId: req.userId});
   console.log(usercar);
 
-  res.status(200).send({ data: usercar });
+  let cars = usercar.map(entry => entry.carId);
+  cars = await Car.find({ _id: { $in: cars } });
+
+  res.status(200).send({ data: usercar, cars });
 });
 
 router.delete("/:id", authUserMiddleware, async (req, res) => {
