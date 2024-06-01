@@ -1,13 +1,14 @@
-<h1>Ассортимент</h1>
+<h1 style="margin-left: 1rem;">Ассортимент</h1>
 @if (isUser()) {<div style="text-align: end; font-weight: 600;">Баланс: {{balance}}$</div>}
-<ul>
+<!-- <ul> -->
+<mat-grid-list style="margin-left: 1rem; margin-right: 1rem;" cols="3" rowHeight="1.5:1">
     @for (task of tasks; track task._id; let index = $index) {
         @if (task.enabled) {
-            <li>
-                <mat-list>
+            <!-- <li> -->
+                    <mat-grid-tile>
                     <div style="display: flex; justify-content: space-between;">
                         <span>
-                            <div><img src="http://localhost:3000/{{task.image}}" width="300px" /></div>
+                            <div><img src="http://localhost:3000/{{task.image}}" width="400px" /></div>
                             <div><label style="font-weight: 900; font-size: 24px;">{{task.name}} {{task.tariff}}$/день</label></div>
                             <div><label>{{task.description}}</label></div>
                         </span>
@@ -24,8 +25,9 @@
                         }
                     </div>
                     <mat-divider style="margin-top: 1rem;" *ngIf="index != tasks.length-1"></mat-divider>
-                </mat-list>
-            </li>
+                    </mat-grid-tile>
+            <!-- </li> -->
         }
     }
-</ul>
+</mat-grid-list>
+<!-- </ul> -->
