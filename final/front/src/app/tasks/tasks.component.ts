@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class TasksComponent {
   tasks: any[] = [];
-  balance: any;
+  balance: any = 0;
 
   constructor(private taskService: TaskService, private autoService: AutoService, private router: Router) {}
 
@@ -26,10 +26,12 @@ export class TasksComponent {
       this.tasks = tasks;
     });
 
-    this.autoService.getBalance().subscribe(userBalance => {
-      this.balance = userBalance['data'];
-      // console.log(this.balance);
-    });
+    if (this.isUser()) {
+      this.autoService.getBalance().subscribe(userBalance => {
+        this.balance = userBalance['data'];
+        // console.log(this.balance);
+      });
+    }
   }
 
   delete(task: Task): void {

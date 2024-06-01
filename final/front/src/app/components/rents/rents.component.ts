@@ -23,10 +23,11 @@ export class RentsComponent {
       console.log(this.tasks);
     });
 
-    this.autoService.getBalance().subscribe(userBalance => {
-      this.balance = userBalance['data'];
-      // console.log(this.balance);
-    });
+    if (this.isUser())
+      this.autoService.getBalance().subscribe(userBalance => {
+        this.balance = userBalance['data'];
+        // console.log(this.balance);
+      });
   }
 
   unrent(task: any): void {
